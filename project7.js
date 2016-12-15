@@ -1,6 +1,9 @@
 var screen = document.getElementById("screen")
 var namespace = "http://www.w3.org/2000/svg"
 var drawing = false;
+
+var colorArray = ["red", "#F26107", "#F2A007", "orange", "#A709E6", "yellow", "#A709E6", "green", "#54BBDE" , "#0940E6", "blue", "#A709E6", "indigo", "#A709E6", "violet"]
+var colorArrayIndex = 0;
 // utility function
 function transformPoint(event) {
   var pt = screen.createSVGPoint()
@@ -52,6 +55,13 @@ var pt = transformPoint(event)
   var shapeSelect = document.getElementById("shapeSelect").value
   var sizeSelect = document.getElementById("sizeSelect").value
   var colorSelect = document.getElementById("colorSelect").value
+  if(colorSelect == "rainbow"){
+    colorSelect = colorArray[colorArrayIndex]
+    colorArrayIndex = colorArrayIndex + 1
+  if(colorArrayIndex >  colorArray.length - 1){
+    colorArrayIndex = 0
+  }
+  }
 
 if(shapeSelect == "square"){
   drawSquare(pt.x, pt.y, sizeSelect, colorSelect)
